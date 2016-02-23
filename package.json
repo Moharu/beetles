@@ -1,0 +1,25 @@
+{
+  "name": "beetles",
+  "version": "1.0.0",
+  "description": "Beetles helper utilities",
+  "main": "aLittleHelpFromMyFriends.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moharu/beetles"
+  },
+  "keywords": [
+    "helper",
+    "utilities",
+    "beatles",
+    "beetles"
+  ],
+  "author": "João Teló <Moharu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moharu/beetles/issues"
+  },
+  "homepage": "https://github.com/Moharu/beetles"
+}
