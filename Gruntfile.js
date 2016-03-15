@@ -15,7 +15,7 @@ module.exports = function(grunt){
             }
         },
         exec: {
-            html_coverage: './node_modules/mocha/bin/mocha test -r blanket --reporter html-cov --recursive >> coverage.html',
+            html_coverage: './node_modules/mocha/bin/mocha test -r blanket --reporter html-cov --recursive > coverage.html',
             coverage: './node_modules/mocha/bin/mocha test -r blanket --reporter mocha-cov-reporter --recursive'
         }
     }
