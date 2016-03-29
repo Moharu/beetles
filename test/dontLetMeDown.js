@@ -219,7 +219,7 @@ describe('The dontLetMeDown module', () => {
                 }
             }
             instance.watcher = setInterval(()=>{
-                expect.fail()
+                expect.fail("Did not kill the watcher")
             },500)
             instance._stop()
             expect(killCalled).to.be.ok()

@@ -14,14 +14,14 @@ MasterWatcher = (function() {
   }
 
   MasterWatcher.prototype.start = function() {
-    // log("Starting!");
+    log("Starting!");
     this.currentTask = this.fork(this.executor);
     this.startObserver();
     this.currentTask.on('exit', (function(_this) {
       return function(code, msg) {
-        // log("Hey, exited! " + code + " " + msg);
+        log("Hey, exited! " + code + " " + msg);
         clearInterval(_this.watcher);
-        // log("waiting to restart...");
+        log("waiting to restart...");
         return setTimeout(function() {
           return _this.start();
         }, _this.period);
@@ -34,7 +34,7 @@ MasterWatcher = (function() {
     })(this));
     return this.currentTask.on('message', (function(_this) {
       return function(data) {
-        // log("received message " + data);
+        log("received message " + data);
         if (data === 'alive') {
           _this.lastVerification = _this.moment();
         }
@@ -46,12 +46,12 @@ MasterWatcher = (function() {
   };
 
   MasterWatcher.prototype.startObserver = function() {
-    // log("Starting observer");
+    log("Starting observer");
     this.lastVerification = this.moment();
     return this.watcher = setInterval((function(_this) {
       return function() {
         if (_this.moment().diff(_this.lastVerification, 'milliseconds') > _this.timeout) {
-          // log('Timeout!');
+          log('Timeout!');
           return _this._stop();
         } else {
           // return log('its ok');
@@ -61,7 +61,7 @@ MasterWatcher = (function() {
   };
 
   MasterWatcher.prototype._stop = function() {
-    // log('forcing exit!');
+    log('forcing exit!');
     this.currentTask.kill();
     return clearInterval(this.watcher);
   };
