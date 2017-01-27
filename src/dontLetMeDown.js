@@ -7,6 +7,7 @@ MasterWatcher = (function() {
     }
     this.fork = (deps != null ? deps.fork : void 0) || require('child_process').fork;
     this.moment = (deps != null ? deps.moment : void 0) || require('moment');
+    this.name = task.name;
     this.executor = task.executor;
     this.timeout = task.timeout || 15000;
     this.period = task.period || 15000;
@@ -14,7 +15,7 @@ MasterWatcher = (function() {
   }
 
   MasterWatcher.prototype.start = function() {
-    log("Starting!");
+    log("Starting " + this.name);
     this.currentTask = this.fork(this.executor);
     this.startObserver();
     this.currentTask.on('exit', (function(_this) {
