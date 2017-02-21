@@ -15,11 +15,13 @@ MasterWatcher = (function() {
         this.shutdownFn = task.shutdownFn;
         this.shouldFinish = false;
         this.taskIsRunning = false;
+        this.env = task.env;
+        this.args = task.args;
     }
 
     MasterWatcher.prototype.start = function() {
         this.log("Starting " + this.name);
-        this.currentTask = this.fork(this.executor);
+        this.currentTask = this.fork(this.executor, [this.args], {env: this.env});
         this.startObserver();
         this.currentTask.on('exit', (function(_this) {
             this.taskIsRunning = false;
